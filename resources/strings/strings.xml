@@ -6,10 +6,11 @@
     <string id="TimeOfDayColorTitle">Time of Day Color</string>
     <string id="HourColorTitle">Hour Color</string>
     <string id="MinuteColorTitle">Minute Color</string>
-    <string id="ShowTimeOfDayTitle">Show Time of Day</string>
-    <string id="OffsetXTitle">Position Offset X (pixels)</string>
-    <string id="OffsetYTitle">Position Offset Y (pixels)</string>
-    <string id="PaddingTitle">Spacing after Time of Day text (pixels)</string>
+    <string id="ShowTimeOfDayTitle">Show Time/Period of Day</string>
+    <string id="OffsetXTitle">Left or Right Margin (pixels)</string>
+    <string id="OffsetYTitle">Top Margin (pixels)</string>
+    <string id="PaddingTitle">Spacing after Time/Period of Day text (pixels)</string>
+    <string id="AlignTextTitle">Alignment</string>
 
     <string id="ColorBlack">Black</string>
     <string id="ColorDarkerGray">Darker Gray</string>
@@ -19,5 +20,9 @@
     <string id="ColorWhite">White</string>
     <string id="ColorBlue">Blue</string>
     <string id="ColorRed">Red</string>
+
+    <string id="AlignLeft">Align Left</string>
+    <string id="AlignCenter">Align Center</string>
+    <string id="AlignRight">Align Right</string>
 
 </strings>

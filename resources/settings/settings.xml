@@ -51,6 +51,14 @@
         <settingConfig type="boolean" />
     </setting>
 
+    <setting propertyKey="@Properties.AlignText" title="@Strings.AlignTextTitle">
+        <settingConfig type="list">
+            <listEntry value="2">@Strings.AlignLeft</listEntry>
+            <listEntry value="1">@Strings.AlignCenter</listEntry>
+            <listEntry value="0">@Strings.AlignRight</listEntry>
+        </settingConfig>
+    </setting>
+
     <setting propertyKey="@Properties.OffsetX" title="@Strings.OffsetXTitle">
         <settingConfig type="numeric" />
     </setting>
@@ -62,4 +70,5 @@
     <setting propertyKey="@Properties.Padding" title="@Strings.PaddingTitle">
         <settingConfig type="numeric" />
     </setting>
+
 </settings>

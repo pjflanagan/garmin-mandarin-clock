@@ -5,8 +5,7 @@ using Toybox.Lang;
 using Toybox.Application;
 
 class MandarinClockView extends WatchUi.WatchFace {
-
-    hidden var fontWidth = 30;
+    hidden var fontWidth;
     hidden var font;
     hidden var fontData;
 
@@ -14,31 +13,16 @@ class MandarinClockView extends WatchUi.WatchFace {
         WatchFace.initialize();
     }
 
-    // Load your resources here
     function onLayout(dc) {
         setLayout(Rez.Layouts.WatchFace(dc));
         // initialise Chinese font
-        var width = dc.getWidth();
-        if (width >=390) {
-            fontWidth = 60;
-        } else if (width > 270) {
-            fontWidth = 40;
-        } else if (width > 250) {
-            fontWidth = 35;
-        } else if (width > 220) {
-            fontWidth = 30;
-        } else {
-            fontWidth = 25;
-        }
         var shape = System.getDeviceSettings().screenShape;
         font = WatchUi.loadResource(Rez.Fonts.font_ch);
-        System.println("Width:" + width + " Height:" + dc.getHeight() + " Shape:" + shape + " Font Size:" + fontWidth);
         fontData = WatchUi.loadResource(Rez.JsonData.fontData);
+        fontWidth = dc.getFontHeight(font);
+        System.println("Width:" + dc.getWidth() + " Height:" + dc.getHeight() + " Shape:" + shape + " Font Size:" + fontWidth);
     }
 
-    // Called when this View is brought to the foreground. Restore
-    // the state of this View and prepare it to be shown. This includes
-    // loading resources into memory.
     function onShow() {
     }
 
@@ -49,7 +33,7 @@ class MandarinClockView extends WatchUi.WatchFace {
         "秒" => 15, "日" => 16, "月" => 17, "天" => 18, "星" => 19,
         "期" => 20, "上" => 21, "下" => 22, "早" => 23, "中" => 24,
         "晚" => 25, "午" => 26, "傍" => 27, "凌" => 28, "晨" => 29,
-        "清" => 30,
+        "清" => 30, "半" => 31,
     };
     const numberToChMap = {
         0 => "零", 1 => "一", 2 => "二", 3 => "三", 4 => "四",
@@ -58,9 +42,19 @@ class MandarinClockView extends WatchUi.WatchFace {
         -2 => "兩",
     };
 
-    function drawChineseTextHorizontal(dc, text, color, x, y) {
+    function drawChineseTextHorizontal(dc, text, color, x, y, justification) {
         if (text.length() == 0) {
             return;
+        }
+        // modify x according to justification
+        var pixels = text.length() * fontWidth;
+        switch(justification) {
+        case Graphics.TEXT_JUSTIFY_CENTER:
+            x = dc.getWidth() / 2 - pixels/2;
+            break;
+        case Graphics.TEXT_JUSTIFY_RIGHT:
+            x = dc.getWidth() - pixels - x;
+            break;
         }
         dc.setColor(color, Graphics.COLOR_TRANSPARENT);
         for (var i = 0; i < text.length(); i++) {
@@ -79,6 +73,8 @@ class MandarinClockView extends WatchUi.WatchFace {
         var offsetX = Application.getApp().getProperty("OffsetX");
         var offsetY = Application.getApp().getProperty("OffsetY");
         var paddingWidth = Application.getApp().getProperty("Padding");
+        var alignment = Application.getApp().getProperty("AlignText");
+
         // Get the current time and format it correctly
         var clockTime = System.getClockTime();
         var hours = clockTime.hour;
@@ -117,6 +113,8 @@ class MandarinClockView extends WatchUi.WatchFace {
         var minuteText = "";
         if (minutes == 0) {
             minuteText = "整";
+        } else if (minutes == 30) {
+            minuteText = "半";
         } else if (minutes < 10) {
             minuteText = numberToChMap[minutes] + "分";
         } else if (minutes < 20) {
@@ -132,13 +130,13 @@ class MandarinClockView extends WatchUi.WatchFace {
                 minuteText = numberToChMap[minutes/10] + "十" + numberToChMap[minutes%10] + "分";
             }
         }
-
+        // ==== drawing Chinese text
         if (Application.getApp().getProperty("ShowTimeOfDay")) {
-            drawChineseTextHorizontal(dc, timeOfDay, Application.getApp().getProperty("TimeOfDayColor"), offsetX, offsetY);
+            drawChineseTextHorizontal(dc, timeOfDay, Application.getApp().getProperty("TimeOfDayColor"), offsetX, offsetY, alignment);
         }
 
-        drawChineseTextHorizontal(dc, hourText, Application.getApp().getProperty("HourColor"), offsetX, offsetY + fontWidth + paddingWidth);
-        drawChineseTextHorizontal(dc, minuteText, Application.getApp().getProperty("MinuteColor"), offsetX, offsetY + fontWidth * 2 + paddingWidth);
+        drawChineseTextHorizontal(dc, hourText, Application.getApp().getProperty("HourColor"), offsetX, offsetY + fontWidth + paddingWidth, alignment);
+        drawChineseTextHorizontal(dc, minuteText, Application.getApp().getProperty("MinuteColor"), offsetX, offsetY + fontWidth * 2 + paddingWidth, alignment);
         //drawChineseTextHorizontal(dc, "三點零八分", 0xff0000, 10, 200);
     }
 

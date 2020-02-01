@@ -10,4 +10,5 @@
     <property id="OffsetY" type="number">80</property>
     <property id="Padding" type="number">10</property>
 
+    <property id="AlignText" type="number">2</property>
 </properties>
