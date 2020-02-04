@@ -8,6 +8,9 @@ This is a Garmin Connect IQ watchface which simply tells time and time of day (p
 
 這是個Garmin Connect IQ錶面程式，顯示中文文字時間。
 
+## Download
+
+[View on Garmin Connect IQ Store](https://apps.garmin.com/en-US/apps/1bc3faea-050d-40ed-811d-506de3f2019b)
 
 ## Chinese Fonts
 
