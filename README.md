@@ -10,7 +10,10 @@ This is a Garmin Connect IQ watchface which simply tells time and time of day (p
 
 ## Download
 
-[View on Garmin Connect IQ Store](https://apps.garmin.com/en-US/apps/1bc3faea-050d-40ed-811d-506de3f2019b)
+
+[<img src="https://developer.garmin.com/img/connect-iq/brand/available-badge.svg"
+      alt="Available on Garmin Connect IQ"
+      height="90">](https://apps.garmin.com/en-US/apps/1bc3faea-050d-40ed-811d-506de3f2019b)
 
 ## Chinese Fonts
 
