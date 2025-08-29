@@ -3,6 +3,10 @@
 - [ ] See if I can change text size (smaller morning/afternoon, larger hour, smaller minute)
 - [ ] Add 月 (month) and 星期 (weekday) and 天 (sunday specific) characters
 - [ ] Add a decorative chinese border (perhaps paint fill it in lighter to make a secondhand
+- [ ] Add 半 for `:30` and 一刻 for `：15`
 
 ## v2
 - [ ] Add characters for weather
+
+
+See: https://www.chineseclass101.com/blog/2020/07/31/telling-time-in-chinese/
